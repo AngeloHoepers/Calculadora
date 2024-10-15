@@ -13,7 +13,6 @@ Esta é uma calculadora simples desenvolvida em Java utilizando a biblioteca Swi
 - **Linguagem**: Java
 - **Framework**: Swing
 
-## Como Executar
-### Pré-requisitos
+## Pré-requisitos
 - Java Development Kit (JDK) instalado na sua máquina.
 - Um IDE de sua preferência (Eclipse, IntelliJ IDEA, NetBeans, etc.) ou um editor de texto.
