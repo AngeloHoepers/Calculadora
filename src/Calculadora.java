@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ahoepers
@@ -14,7 +16,8 @@ public class Calculadora extends javax.swing.JFrame {
     }
     
     String operacao;
-    int num1, num2, resultado;
+    String msg = "Erro";
+    int num1 = 0, num2, resultado;
     int tamanhoLimite = 3;
 
     /**
@@ -269,17 +272,17 @@ public class Calculadora extends javax.swing.JFrame {
         
         if(display.getText().length() < tamanhoLimite && botaoClicado.charAt(0) >= '0' && botaoClicado.charAt(0) <= '9'){
             display.setText(display.getText() + botaoClicado);
-            System.out.println(botaoClicado);
-        }
-        
-        if (botaoClicado.equals("+") || botaoClicado.equals("X") || botaoClicado.equals("-") || botaoClicado.equals("/")) {
-            operacao = botaoClicado;
+        } else if (botaoClicado.equals("+") || botaoClicado.equals("X") || botaoClicado.equals("-") || botaoClicado.equals("/")) {
             num1 = Integer.parseInt(display.getText());
+            operacao = botaoClicado;
+            System.out.println(num1);
+            System.out.println(operacao);
             display.setText("");
         } else if (botaoClicado.equals("C")) {
             display.setText("");
         } else if (botaoClicado.equals("=")) {
             num2 = Integer.parseInt(display.getText());
+            display.setText("");
             System.out.println(num2);
         
             switch(operacao) {
@@ -293,14 +296,31 @@ public class Calculadora extends javax.swing.JFrame {
                     resultado = num1 * num2;
                     break;
                 case "/":
-                    resultado = num1 / num2;
-                    break;
+                    if (num2 == 0) {
+                        msg = "Não é possível dividir por zero";
+                        mensagemAviso(msg);
+                        System.out.println(msg);
+                    } else {
+                        resultado = num1 / num2;
+                        break;
+                    }
             }
             
             display.setText(String.valueOf(resultado));
+            System.out.println("= " + resultado);
+            
+            String completo = num1 + " " + operacao + " " + num2 + " = " + resultado;
+            
+            System.out.println("Calculo completo: " + completo);
         }
     }//GEN-LAST:event_clicarBotao
+      
+    public void mensagemAviso(String msg) {
         
+        JOptionPane.showMessageDialog(display, msg);
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
